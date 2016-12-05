@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="public/vue.js"></script>
+    <script src="public/jquery.js"></script>
+    <script src="public/semantic.min.js"></script>
+    <link rel="stylesheet" href="public/semantic.min.css">
+    <link rel="stylesheet" href="src/search.css">
+    <title>物资申请</title>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="labels">
+            <a class="ui blue ribbon label" href="search.html">查询申请记录</a>
+            <a class="ui orange ribbon label" href="apply.html">创建新申请表</a>
+        </div>
+        <div class="h_title">物资管理系统</div>
+        <div class="sheet">
+            <div class="title">申请记录查询</div>
+            <div class="ui action input">
+                <input type="text" placeholder="请输入申请编号..." v-model="q" autofocus>
+                <button class="ui icon blue button" v-on:click="submit">
+                    <i class="search icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="src/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+/**布局**/
+* {
+    font-family: "微软雅黑", "宋体", sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    list-style-type: none;
+    border-collapse: collapse;
+    text-decoration: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+body {
+    padding: 10px;
+    display: table-cell;
+    vertical-align: middle;
+    background: url(../img/bg.jpg) center no-repeat fixed ;
+}
+
+.container {
+    width: 360px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.container .status {
+    line-height: 230px;
+    text-align: center;
+    font-size: 200px;
+    text-shadow: 0 2px 3px #555;
+}
+
+.container .tips {
+    letter-spacing: 5px;
+    text-shadow: 0 1px 2px #555;
+    font-size: 24px;
+}
+
+.container .button {
+    box-shadow: 0 2px 3px #555!important;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="public/vue.js"></script>
+    <script src="public/jquery.js"></script>
+    <script src="public/semantic.min.js"></script>
+    <link rel="stylesheet" href="public/semantic.min.css">
+    <link rel="stylesheet" href="src/apply.css">
+    <title>物资申请</title>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="labels">
+            <a class="ui blue ribbon label" href="search.html">查询申请记录</a>
+            <a class="ui orange ribbon label" href="apply.html">创建新申请表</a>
+        </div>
+        <div class="h_title">物资管理系统</div>
+        <div class="sheet">
+            <div class="title">申请表</div>
+            <div class="info">
+                <div class="item">
+                    <label class="label" for="activity">活动名称：</label>
+                    <div class="ui mini input">
+                        <input id="activity" name="activity" type="text" autocomplete="off" autofocus v-model="activity">
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label" for="name">姓　　名：</label>
+                    <div class="ui mini input">
+                        <input id="name" name="name" type="text" autocomplete="off" autofocus v-model="approver">
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label" for="clazz">部　　门：</label>
+                    <div class="ui mini input">
+                        <input id="clazz" name="clazz" type="text" autocomplete="off" v-model="clazz">
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label" for="phone">联系方式：</label>
+                    <div class="ui mini input">
+                        <input id="phone" name="phone" type="text" autocomplete="off" autofocus v-model="phone">
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label" for="lend">借出日期：</label>
+                    <div class="ui mini input">
+                        <input id="lend" name="lend" type="date" autocomplete="off" v-model="lend">
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label" for="return">归还日期：</label>
+                    <div class="ui mini input">
+                        <input id="return" name="return" type="date" autocomplete="off" v-model="return">
+                    </div>
+                </div>
+            </div>
+            <p class="table-title">物资明细表</p>
+            <table class="ui celled striped table">
+                <thead>
+                <tr>
+                    <th>物资名称</th>
+                    <th>数量</th>
+                    <th>备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-if="table.length > 0" v-for="item in table">
+                    <td v-text="item.name"></td>
+                    <td>{{item.count}}{{item.unit}}</td>
+                    <td v-text="item.remark"></td>
+                </tr>
+                <tr>
+                    <td>　</td>
+                    <td>　</td>
+                    <td>　</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="table-form">
+                <div class="t_item">
+                    <label class="label">物资名称：</label>
+                    <div class="ui mini selection dropdown" v-if="materials">
+                        <input type="hidden" name="material">
+                        <i class="dropdown icon"></i>
+                        <div class="default text" v-text="currSelect ? currSelect.name : null"></div>
+                        <div class="menu">
+                            <div class="item" data-value="{{item.id}}" v-for="item in materials" v-text="item.m_name" v-on:click="select(item)"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="t_item">
+                    <label class="label" for="count">数量：</label>
+                    <div class="ui mini input" style="position: relative;">
+                        <input id="count" name="count" type="text" autocomplete="off" v-model="count">
+                        <div class="unit" v-if="currSelect" v-text="currSelect.m_unit"></div>
+                    </div>
+                </div>
+                <div class="t_item">
+                    <label class="label" for="remark">备注：</label>
+                    <div class="ui mini input">
+                        <input id="remark" name="remark" type="text" autocomplete="off" v-model="remark">
+                    </div>
+                </div>
+                <button class="ui mini blue button" type="button" v-on:click="add">添加</button>
+            </div>
+            <div class="btn">
+                <button class="ui mini green button" type="button" v-on:click="submit">提交</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="src/apply.js"></script>
+</body>
+</html>

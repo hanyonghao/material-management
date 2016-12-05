@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="public/vue.js"></script>
+    <script src="public/jquery.js"></script>
+    <script src="public/semantic.min.js"></script>
+    <link rel="stylesheet" href="public/semantic.min.css">
+    <link rel="stylesheet" href="src/examine.css">
+    <title>申请历史记录</title>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="labels">
+            <a class="ui blue ribbon label" href="examine.html">申请表管理</a>
+            <a class="ui orange ribbon label" href="material.html">物资管理</a>
+        </div>
+        <div class="title">物资管理系统</div>
+        <p class="table-title">申请历史记录</p>
+        <table class="ui celled striped table">
+            <thead>
+                <tr>
+                    <th>活动名</th>
+                    <th>申请人</th>
+                    <th>申请部门</th>
+                    <th>借出日期</th>
+                    <th>归还日期</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="table.length > 0" v-for="item in table">
+                    <td><a href="{{item.ap_url}}" v-text="item.ap_activity"></a></td>
+                    <td v-text="item.ap_approver"></td>
+                    <td v-text="item.ap_clazz"></td>
+                    <td v-text="item.ap_lend"></td>
+                    <td v-text="item.ap_return"></td>
+                    <td v-text="item.ap_status"></td>
+                </tr>
+                <tr v-if="table.length == 0">
+                    <td>　</td>
+                    <td>　</td>
+                    <td>　</td>
+                    <td>　</td>
+                    <td>　</td>
+                    <td>　</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <p class="table-title">待审批申请</p>
+        <table class="ui celled striped table">
+            <thead>
+            <tr>
+                <th>活动名</th>
+                <th>申请人</th>
+                <th>申请部门</th>
+                <th>借出日期</th>
+                <th>归还日期</th>
+                <th>申请日期</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-if="examine.length > 0" v-for="item in examine">
+                <td><a href="{{item.ap_url}}" v-text="item.ap_activity"></a></td>
+                <td v-text="item.ap_approver"></td>
+                <td v-text="item.ap_clazz"></td>
+                <td v-text="item.ap_lend"></td>
+                <td v-text="item.ap_return"></td>
+                <td v-text="item.ap_create"></td>
+            </tr>
+            <tr v-if="table.length == 0">
+                <td>　</td>
+                <td>　</td>
+                <td>　</td>
+                <td>　</td>
+                <td>　</td>
+                <td>　</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" src="src/examine.js"></script>
+</body>
+</html>

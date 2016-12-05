@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="public/vue.js"></script>
+    <script src="public/jquery.js"></script>
+    <script src="public/semantic.min.js"></script>
+    <link rel="stylesheet" href="public/semantic.min.css">
+    <link rel="stylesheet" href="src/index.css">
+    <title>登录</title>
+</head>
+<body>
+    <div id="container" class="container" v-on:keydown.enter="submit">
+        <div class="title">物资管理系统</div>
+        <div class="ui right labeled fluid input">
+            <input type="text" placeholder="用户名..." autocomplete="off" autofocus v-model="username">
+            <div class="ui dropdown blue label">
+                <div class="text">部门</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item active">部门</div>
+                    <div class="item">管理员</div>
+                </div>
+            </div>
+        </div>
+        <div class="ui fluid input">
+            <input type="password" placeholder="密码..." autocomplete="off" v-model="password">
+        </div>
+        <button class="ui blue fluid button" type="button" v-on:click="submit">登录</button>
+    </div>
+    <script type="text/javascript" src="src/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="public/vue.js"></script>
+    <script src="public/jquery.js"></script>
+    <script src="public/semantic.min.js"></script>
+    <link rel="stylesheet" href="public/semantic.min.css">
+    <link rel="stylesheet" href="src/material.css">
+    <title>物资管理</title>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="labels">
+            <a class="ui blue ribbon label" href="examine.html">申请表管理</a>
+            <a class="ui orange ribbon label" href="material.html">物资管理</a>
+        </div>
+        <div class="title">物资管理系统</div>
+        <div class="table-title">
+            <span>物资明细表：</span>
+            <div class="ui icon mini input" style="float: right;">
+                <input type="text" placeholder="物资名称..." v-model="q" />
+                <i class="search icon"></i>
+            </div>
+        </div>
+        <table class="ui celled striped table">
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>库存</th>
+                    <th>单位</th>
+                    <th colspan="2" style="text-align: center;width: 100px;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="materials && (!q || item.m_name.indexOf(q) > -1)" v-for="item in materials" v-bind:class="{active : item == currSelect}">
+                    <td v-text="item.m_name"></td>
+                    <td v-text="item.m_amount"></td>
+                    <td v-text="item.m_unit"></td>
+                    <td style="text-align: center;width: 50px;" v-if="item != currSelect"><a v-on:click="edit(item)">编辑</a></td>
+                    <td style="text-align: center;width: 50px;" v-if="item == currSelect"><a v-on:click="init">取消</a></td>
+                    <td style="text-align: center;width: 50px;"><a v-on:click="deletes(item)">删除</a></td>
+                </tr>
+                <tr v-if="!materials">
+                    <td>　</td>
+                    <td>　</td>
+                    <td>　</td>
+                    <td>　</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-form" v-if="currSelect">
+            <div class="t_item">
+                <label class="label" for="name">物资名称：</label>
+                <div class="ui mini input">
+                    <input id="name" name="count" type="text" autocomplete="off" v-model="currSelect.m_name" autofocus>
+                </div>
+            </div>
+            <div class="t_item">
+                <label class="label" for="amount">库存：</label>
+                <div class="ui mini input">
+                    <input id="amount" name="amount" type="text" autocomplete="off" v-model="currSelect.m_amount">
+                </div>
+            </div>
+            <div class="t_item">
+                <label class="label" for="unit">单位：</label>
+                <div class="ui mini input">
+                    <input id="unit" name="unit" type="text" autocomplete="off" v-model="currSelect.m_unit">
+                </div>
+            </div>
+            <button class="ui mini blue button" type="button" v-on:click="save" v-text="btn_text"></button>
+        </div>
+    </div>
+    <script type="text/javascript" src="src/material.js"></script>
+</body>
+</html>

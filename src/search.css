@@ -1,0 +1,87 @@
+/**布局**/
+* {
+    font-family: "微软雅黑", "宋体", sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    list-style-type: none;
+    border-collapse: collapse;
+    text-decoration: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+body {
+    padding: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    overflow: auto;
+    background: url(../img/bg.jpg) center no-repeat fixed ;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px 40px 40px 40px;
+    background: white;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 2px 6px #7a7a7a;
+    -moz-box-shadow: 0 2px 6px #7a7a7a;
+    box-shadow: 0 2px 6px #7a7a7a;
+    position: relative;
+}
+
+.container .h_title {
+    line-height: 70px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.container .labels {
+    position: absolute;
+    top: 20px;
+    left: -1rem;
+}
+
+.container .ui.ribbon.label {
+    left: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sheet {
+    border: 1px solid #ddd;
+    padding: 0 25px 30px 25px;
+    margin-top: 20px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.container .title {
+    line-height: 70px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.container .input {
+    width: 500px;
+}

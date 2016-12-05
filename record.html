@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="public/vue.js"></script>
+    <script src="public/jquery.js"></script>
+    <script src="public/semantic.min.js"></script>
+    <link rel="stylesheet" href="public/semantic.min.css">
+    <link rel="stylesheet" href="src/record.css">
+    <title>申请表记录</title>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="title">申请表</div>
+        <div class="info" v-if="apply_sheet">
+            <div class="item">
+                <label class="label" for="id">申请编号：</label>
+                <span id="id" v-text="apply_sheet.id"></span>
+            </div>
+            <div class="item">
+                <label class="label" for="activity">活动名称：</label>
+                <span id="activity" v-text="apply_sheet.ap_activity"></span>
+            </div>
+            <div class="item">
+                <label class="label" for="status">状　　态：</label>
+                <span id="status" v-text="apply_sheet.ap_status"></span>
+            </div>
+            <div class="item">
+                <label class="label" for="name">申请人　：</label>
+                <span id="name" v-text="apply_sheet.ap_approver"></span>
+            </div>
+            <div class="item">
+                <label class="label" for="clazz">部　　门：</label>
+                <span id="clazz" v-text="apply_sheet.ap_clazz"></span>
+            </div>
+            <div class="item">
+                <label class="label" for="phone">联系方式：</label>
+                <span id="phone" v-text="apply_sheet.ap_phone"></span>
+            </div>
+            <div class="item">
+                <label class="label" for="lend">借出日期：</label>
+                <span id="lend" v-text="apply_sheet.ap_lend"></span>
+            </div>
+            <div class="item">
+                <label class="label" for="return">归还日期：</label>
+                <span id="return" v-text="apply_sheet.ap_return"></span>
+            </div>
+            <div class="item">
+                <label class="label" for="create">申请日期：</label>
+                <span id="create" v-text="apply_sheet.ap_create"></span>
+            </div>
+        </div>
+        <p class="table-title">物资明细表</p>
+        <table class="ui celled striped table">
+            <thead>
+                <tr>
+                    <th>物资名称</th>
+                    <th>数量</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody v-if="apply_sheet">
+                <tr v-if="apply_sheet.article.length > 0" v-for="item in apply_sheet.article">
+                    <td v-text="item.m_name"></td>
+                    <td>{{item.r_count}}{{item.m_unit}}</td>
+                    <td v-text="item.r_remark"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btn" v-if="apply_sheet">
+            <button class="ui mini green button" type="button" v-on:click="href('/ctrl/lend')" v-if="disable && apply_sheet.ap_status == '未借出'">借出</button>
+            <button class="ui mini orange button" type="button" v-on:click="href('/ctrl/return')" v-if="disable && apply_sheet.ap_status == '借出中' || apply_sheet.ap_status == '已超期'">归还</button>
+            <button class="ui mini yellow button" type="button" v-on:click="href('/ctrl/success')" v-if="disable && apply_sheet.ap_status == '待审批'">通过</button>
+            <button class="ui mini red button" type="button" v-on:click="href('/ctrl/failed')" v-if="disable && apply_sheet.ap_status == '待审批'">不通过</button>
+            <button class="ui mini grey button" type="button" v-on:click="back">返回</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="src/record.js"></script>
+</body>
+</html>
